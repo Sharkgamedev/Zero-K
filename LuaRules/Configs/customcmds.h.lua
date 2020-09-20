@@ -9,3 +9,4 @@ end
 
 -- Legacy synonym, not present in the main table
 env.CMD_SETHAVEN = commandIDs.RETREAT_ZONE
+env.CMD_EXCLUDEDAIRPAD = commandIDs.EXCLUDEAIRPAD

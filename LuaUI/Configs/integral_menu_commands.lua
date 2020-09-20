@@ -394,6 +394,7 @@ local tooltips = {
 	MOVE_STATE = "Move State (_STATE_)\n  Sets how far out of its way a unit will move to attack enemies.",
 	FIRE_STATE = "Fire State (_STATE_)\n  Sets when a unit will automatically shoot.",
 	RETREAT = "Retreat (_STATE_)\n  Automatically retreat to closest retreat point or airpad when damaged. Right click to disable.",
+	EXCLUDEAIRPAD = "Teste (_STATE) \n Yeah this is a test",
 	IDLEMODE = "Idle State (_STATE_)\n  Set whether aircraft lands when idle.",
 	AP_FLY_STATE = "Idle State (_STATE_)\n  Set whether aircraft lands when idle.",
 	UNIT_BOMBER_DIVE_STATE = "Dive State (_STATE_)\n  Set when Ravens dive.",
@@ -536,6 +537,13 @@ local overrides = {
 			tooltips.RETREAT:gsub("_STATE_", "99%% Health")
 		}
 	},
+	[CMD_EXCLUDEAIRPAD] = {
+		texture = {imageDir .. 'states/retreat_off.png', imageDir .. 'states/retreat_30.png'},
+		stateTooltip = {
+			tooltips.EXCLUDEAIRPAD:gsub("_STATE_", "Disabled"),
+			tooltips.EXCLUDEAIRPAD:gsub("_STATE_", "30"),
+		}
+	},
 	[CMD.IDLEMODE] = {
 		texture = {imageDir .. 'states/fly_on.png', imageDir .. 'states/fly_off.png'},
 		stateTooltip = {tooltips.IDLEMODE:gsub("_STATE_", "Fly"), tooltips.IDLEMODE:gsub("_STATE_", "Land")}
@@ -619,6 +627,7 @@ local overrides = {
 local widgetSpaceHidden = {
 	[60] = true, -- CMD.PAGES
 	[CMD_SETHAVEN] = true,
+	[CMD_EXCLUDEAIRPAD] = true,
 	[CMD_SET_AI_START] = true,
 	[CMD_CHEAT_GIVE] = true,
 	[CMD_SET_FERRY] = true,
