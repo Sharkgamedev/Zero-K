@@ -72,6 +72,7 @@ local gunshipPadRadius = 160
 local DEFAULT_PAD_RADIUS = 300
 
 local airDefs = {}
+local excludedPads = {}
 local boolAirDefs = {}
 for i = 1, #UnitDefs do
 	local unitDef = UnitDefs[i]
@@ -294,6 +295,25 @@ local function FindBestAirpadAt(unitID, x, z, r) -- picks the least crowded pad 
 	return bestPadID
 end
 
+local function tablelength(T)
+	local count = 0
+	for _ in pairs(T) do
+		count = count + 1 
+	end
+	return count
+end
+
+local function contains (array, value)
+	for index, value in ipairs(array) do
+        -- We grab the first index of our sub-table instead
+        if value[1] == val then
+            return true
+        end
+    end
+
+    return false
+end
+
 local function FindNearestAirpad(unitID, team)
 	--Spring.Echo(unitID.." checking for closest pad")
 	local allyTeam = spGetUnitAllyTeam(unitID)
@@ -310,7 +330,7 @@ local function FindNearestAirpad(unitID, team)
 			end
 			airpadsPerAllyteam[allyTeam][airpadID] = nil
 		else
-			if (airpadsData[airpadID].reservations.count < airpadsData[airpadID].cap) then
+			if (airpadsData[airpadID].reservations.count < airpadsData[airpadID].cap and not contains(excludedPads, airpadID)) then
 				freePads[airpadID] = true
 				freePadCount = freePadCount + 1
 			end
@@ -335,6 +355,10 @@ local function FindNearestAirpad(unitID, team)
 			closestPad = airpadID
 		end
 	end
+
+	-- if contains (excludedPads, closestPad)
+
+    -- end
 	return closestPad
 end
 
@@ -485,6 +509,16 @@ function ReserveAirpad(bomberID,airpadID)
 		reservations.count = reservations.count + 1
 		spSetUnitRulesParam(airpadID,"unreservedPad",math.max(0,airpadsData[airpadID].cap-reservations.count)) --hint widgets
 	end
+end
+
+function gadget:RecvLuaMsg(msg, playerID)
+	local msg_table = Spring.Utilities.ExplodeString('|', msg)
+	if msg_table[1] ~= 'addExclusion' then
+		return
+	end
+	table.insert(excludedPads, msg_table[2])
+	--Spring.Echo(msg_table[2])
+	Spring.Echo(excludedPads[#excludedPads])
 end
 
 function gadget:UnitDestroyed(unitID, unitDefID, team)
