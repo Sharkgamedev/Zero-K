@@ -43,17 +43,14 @@ end
 
 local cmdEXCLUDEAIRPAD = {
 	id      = CMD_EXCLUDEAIRPAD,
-  type    = CMDTYPE.ICON_UNIT,
-  name    = "exclude",
+	type    = CMDTYPE.ICON,
 	tooltip = 'Excludes an airpad from the fighter running',
 	action  = 'reclaim',
 	params  = {},
 	texture = 'LuaUI/Images/commands/states/divebomb_shield.png',
+	pos     = {CMD_ONOFF,CMD_REPEAT,CMD_MOVE_STATE,CMD_FIRE_STATE, CMD_RETREAT},
 }
-local Chili, Screen0
- 
-local bgWindow
-local testingButton
+
 --function widget:CommandNotify(cmdID, cmdParams, cmdOptions)
 	--if cmdID == CMD_SETAIRPADEXCLUSION then
 		--Spring.Echo("Run")
@@ -61,10 +58,10 @@ local testingButton
 --	end
 --end
 
---function widget:CommandsChanged()
---		local customCommands = widgetHandler.customCommands
---		customCommands[#customCommands+1] = cmdEXCLUDEDAIRPAD
---end
+function widget:CommandsChanged()
+		local customCommands = widgetHandler.customCommands
+		customCommands[#customCommands+1] = cmdEXCLUDEDAIRPAD
+end
 
 local Chili, Screen0
  
