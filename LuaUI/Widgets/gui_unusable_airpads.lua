@@ -4,11 +4,7 @@ function widget:GetInfo()
       desc      = "UI for marking allied airpads unusable gadget",
       author    = "SharkGameDev",
       date      = "2020-09-10",
-<<<<<<< Updated upstream
-      license   = "GNU GPL, v2 or later",
-=======
       license   = "PD",
->>>>>>> Stashed changes
       layer     = 0,
       enabled   = true,
       handler		= true, --for adding customCommand into UI
@@ -47,26 +43,18 @@ end
 
 local cmdEXCLUDEAIRPAD = {
 	id      = CMD_EXCLUDEAIRPAD,
-<<<<<<< Updated upstream
-	type    = CMDTYPE.ICON,
-=======
   type    = CMDTYPE.ICON_UNIT,
   name    = "exclude",
->>>>>>> Stashed changes
 	tooltip = 'Excludes an airpad from the fighter running',
 	action  = 'reclaim',
 	params  = {},
 	texture = 'LuaUI/Images/commands/states/divebomb_shield.png',
 	pos     = {CMD_ONOFF,CMD_REPEAT,CMD_MOVE_STATE,CMD_FIRE_STATE, CMD_RETREAT},
 }
-<<<<<<< Updated upstream
-
-=======
 local Chili, Screen0
  
 local bgWindow
 local testingButton
->>>>>>> Stashed changes
 --function widget:CommandNotify(cmdID, cmdParams, cmdOptions)
 	--if cmdID == CMD_SETAIRPADEXCLUSION then
 		--Spring.Echo("Run")
@@ -74,7 +62,6 @@ local testingButton
 --	end
 --end
 
-<<<<<<< Updated upstream
 function widget:CommandsChanged()
 		local customCommands = widgetHandler.customCommands
 		customCommands[#customCommands+1] = cmdEXCLUDEDAIRPAD
@@ -84,11 +71,6 @@ local Chili, Screen0
  
 local bgWindow
 local testingButton
-=======
---function widget:CommandsChanged()
---		local customCommands = widgetHandler.customCommands
---		customCommands[#customCommands+1] = cmdEXCLUDEDAIRPAD
---end
 
 local function findAirpadUnderCursour () 
   local mouseX, mouseY = Spring.GetMouseState()
@@ -100,8 +82,8 @@ local function findAirpadUnderCursour ()
   Spring.Echo(id)
   end
 end
->>>>>>> Stashed changes
- 
+
+
 function widget:Initialize()	
   if (not WG.Chili) then
     -- don't run if we can't find Chili
@@ -116,17 +98,10 @@ function widget:Initialize()
   -- Create the window
   bgWindow = Chili.Window:New{
     parent = Screen0,
-<<<<<<< Updated upstream
-    x = '50%',
-    y = '50%',
-    width  = '60%',
-    height = '60%',	
-=======
     x = '37%',
     y = '37%',
     width  = '25%',
     height = '25%',	
->>>>>>> Stashed changes
   }	
 
 
@@ -137,7 +112,6 @@ function widget:Initialize()
     width  = '100%',
     height = '100%',
     caption = "Test",
-<<<<<<< Updated upstream
     OnClick = { findAirpadUnderCursour() },
   }
 end
@@ -152,13 +126,6 @@ local function findAirpadUnderCursour ()
   local z = args[3]
   function() Spring.SendLuaRulesMsg("World coordinates: (" .. x .. ", " .. y .. ", " .. z .. ")")end
 end
-=======
-    OnClick = { function() findAirpadUnderCursour()end },
-  }
-end
-  
-
->>>>>>> Stashed changes
 
 
  -- function widget:CommandNotify(cmdID, cmdParams, cmdOptions)

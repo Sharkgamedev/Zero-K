@@ -150,8 +150,8 @@ local rearmCMD = {
 
 local cmdEXCLUDEAIRPAD = {
 	id      = CMD_EXCLUDEAIRPAD,
-  type    = CMDTYPE.ICON_UNIT,
-  name    = "exclude",
+  	type    = CMDTYPE.ICON_UNIT,
+  	name    = "exclude",
 	tooltip = 'Excludes an airpad from the fighter running',
 	action  = 'reclaim',
 	params  = {},
@@ -513,6 +513,7 @@ end
 
 local function excludeAirpad (unitID)
  
+	Spring.Echo("Hello")
 --Check if unitID exists in airpad ids list
 --Add it to thr exlusion as I have already don ein recvluamsg
 
@@ -533,19 +534,21 @@ end
 ---DUMB DUMB PAY ATTAENTION TO THIS /!\ LOOK DOWN
 --
 --
---HI HI HI		 HI HI HI
---HI HI HI		 HI HI HI
---HI HI HI		 HI HI HI
---HI HI HI		 HI HI HI
---HI HI HI		 HI HI HI
---HI HI HI HI HI HI HI HI
---HI HI HI HI HI HI HI HI
---HI HI HI HI HI HI HI HI
---HI HI HI		 HI HI HI
---HI HI HI		 HI HI HI
---HI HI HI		 HI HI HI
---HI HI HI		 HI HI HI
---HI HI HI		 HI HI HI
+--HI HI HI          HI HI HI                 HI HI HI HI HI HI HI HI HI
+--HI HI HI          HI HI HI                 HI HI HI HI HI HI HI HI HI
+--HI HI HI          HI HI HI                 HI HI HI HI HI HI HI HI HI
+--HI HI HI          HI HI HI                          HI HI HI
+--HI HI HI          HI HI HI                          HI HI HI
+--HI HI HI          HI HI HI                          HI HI HI
+--HI HI HI HI HI HI HI HI HI                          HI HI HI
+--HI HI HI HI HI HI HI HI HI                          HI HI HI
+--HI HI HI HI HI HI HI HI HI                          HI HI HI
+--HI HI HI         	HI HI HI                          HI HI HI
+--HI HI HI          HI HI HI                          HI HI HI
+--HI HI HI 	        HI HI HI                          HI HI HI
+--HI HI HI          HI HI HI                 HI HI HI HI HI HI HI HI HI
+--HI HI HI          HI HI HI                 HI HI HI HI HI HI HI HI HI
+--HI HI HI          HI HI HI                 HI HI HI HI HI HI HI HI HI
 --
 ---
 --
@@ -747,7 +750,7 @@ function gadget:CommandFallback(unitID, unitDefID, unitTeam, cmdID, cmdParams, c
 		return true,true
 	end
 	if cmdID == CMD_EXCLUDEAIRPAD then
-		excludeAirpad(unitID)
+		--excludeAirpad(unitID)
 	end
 	return false -- command not used
 end
