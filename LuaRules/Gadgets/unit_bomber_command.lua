@@ -132,6 +132,7 @@ local defaultCommands = { -- commands that is processed by gadget
 	[CMD_RAW_BUILD] = true,
 	[CMD_REMOVE] = true,
 	[CMD_INSERT] = true,
+	[CMD_EXCLUDEAIRPAD] = true,
 }
 
 --------------------------------------------------------------------------------
@@ -145,6 +146,16 @@ local rearmCMD = {
     type    = CMDTYPE.ICON_UNIT,
 	tooltip = "Select an airpad to return to for rearm",
 	hidden	= true,
+}
+
+local cmdEXCLUDEAIRPAD = {
+	id      = CMD_EXCLUDEAIRPAD,
+  type    = CMDTYPE.ICON_UNIT,
+  name    = "exclude",
+	tooltip = 'Excludes an airpad from the fighter running',
+	action  = 'reclaim',
+	params  = {},
+	texture = 'LuaUI/Images/commands/states/divebomb_shield.png',
 }
 
 local findPadCMD = {
@@ -427,6 +438,7 @@ function gadget:UnitCreated(unitID, unitDefID, team)
 	if airDefs[unitDefID] then
 		Spring.InsertUnitCmdDesc(unitID, 400, rearmCMD)
 		Spring.InsertUnitCmdDesc(unitID, 401, findPadCMD)
+		Spring.InsertUnitCmdDesc(unitID, 402, cmdEXCLUDEAIRPAD)
 		bomberUnitIDs[unitID] = true
 	end
 	--[[
@@ -499,6 +511,13 @@ local function CancelAirpadReservation(unitID)
 	end
 end
 
+local function excludeAirpad (unitID)
+ 
+--Check if unitID exists in airpad ids list
+--Add it to thr exlusion as I have already don ein recvluamsg
+
+end
+
 function ReserveAirpad(bomberID,airpadID)
 	spSetUnitRulesParam(bomberID, "airpadReservation",1)
 	local reservations = airpadsData[airpadID].reservations
@@ -510,6 +529,27 @@ function ReserveAirpad(bomberID,airpadID)
 		spSetUnitRulesParam(airpadID,"unreservedPad",math.max(0,airpadsData[airpadID].cap-reservations.count)) --hint widgets
 	end
 end
+
+---DUMB DUMB PAY ATTAENTION TO THIS /!\ LOOK DOWN
+--
+--
+--HI HI HI		 HI HI HI
+--HI HI HI		 HI HI HI
+--HI HI HI		 HI HI HI
+--HI HI HI		 HI HI HI
+--HI HI HI		 HI HI HI
+--HI HI HI HI HI HI HI HI
+--HI HI HI HI HI HI HI HI
+--HI HI HI HI HI HI HI HI
+--HI HI HI		 HI HI HI
+--HI HI HI		 HI HI HI
+--HI HI HI		 HI HI HI
+--HI HI HI		 HI HI HI
+--HI HI HI		 HI HI HI
+--
+---
+--
+
 
 function gadget:RecvLuaMsg(msg, playerID)
 	local msg_table = Spring.Utilities.ExplodeString('|', msg)
@@ -705,6 +745,9 @@ function gadget:CommandFallback(unitID, unitDefID, unitTeam, cmdID, cmdParams, c
 			rearmRequest[unitID] = true
 		end
 		return true,true
+	end
+	if cmdID == CMD_EXCLUDEAIRPAD then
+		excludeAirpad(unitID)
 	end
 	return false -- command not used
 end
