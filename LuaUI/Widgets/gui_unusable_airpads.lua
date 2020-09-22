@@ -50,13 +50,13 @@ local cmdEXCLUDEAIRPAD = {
 	texture = 'LuaUI/Images/commands/states/divebomb_shield.png',
 	pos     = {CMD_ONOFF,CMD_REPEAT,CMD_MOVE_STATE,CMD_FIRE_STATE, CMD_RETREAT},
 }
-
 --function widget:CommandNotify(cmdID, cmdParams, cmdOptions)
 	--if cmdID == CMD_SETAIRPADEXCLUSION then
 		--Spring.Echo("Run")
 		--return true
 --	end
 --end
+
 
 function widget:CommandsChanged()
 		local customCommands = widgetHandler.customCommands
@@ -78,7 +78,6 @@ local function findAirpadUnderCursour ()
   Spring.Echo(id)
   end
 end
-
 
 function widget:Initialize()	
   if (not WG.Chili) then
@@ -111,7 +110,6 @@ function widget:Initialize()
     OnClick = { function() findAirpadUnderCursour() end },
   }
 end
-
 
  -- function widget:CommandNotify(cmdID, cmdParams, cmdOptions)
    -- if cmdID == CMD_EXCLUDEAIRPAD then
