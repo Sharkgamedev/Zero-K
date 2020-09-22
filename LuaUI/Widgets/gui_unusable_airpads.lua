@@ -57,7 +57,6 @@ local cmdEXCLUDEAIRPAD = {
 --	end
 --end
 
-
 function widget:CommandsChanged()
 		local customCommands = widgetHandler.customCommands
 		customCommands[#customCommands+1] = cmdEXCLUDEDAIRPAD
