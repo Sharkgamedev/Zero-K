@@ -49,7 +49,6 @@ local cmdEXCLUDEAIRPAD = {
 	action  = 'reclaim',
 	params  = {},
 	texture = 'LuaUI/Images/commands/states/divebomb_shield.png',
-	pos     = {CMD_ONOFF,CMD_REPEAT,CMD_MOVE_STATE,CMD_FIRE_STATE, CMD_RETREAT},
 }
 local Chili, Screen0
  
@@ -62,10 +61,10 @@ local testingButton
 --	end
 --end
 
-function widget:CommandsChanged()
-		local customCommands = widgetHandler.customCommands
-		customCommands[#customCommands+1] = cmdEXCLUDEDAIRPAD
-end
+--function widget:CommandsChanged()
+--		local customCommands = widgetHandler.customCommands
+--		customCommands[#customCommands+1] = cmdEXCLUDEDAIRPAD
+--end
 
 local Chili, Screen0
  
@@ -112,19 +111,8 @@ function widget:Initialize()
     width  = '100%',
     height = '100%',
     caption = "Test",
-    OnClick = { findAirpadUnderCursour() },
+    OnClick = { function() findAirpadUnderCursour() end },
   }
-end
-  
-local function findAirpadUnderCursour ()
-  local mouseX, mouseY = Spring.GetMouseState()
---  print ("Mouse coordinates: (" .. mouseX .. ", " .. mouseY .. ")")
-  local desc, args = Spring.TraceScreenRay(mouseX, mouseY, true)
-  if nil == desc then return end -- off map
-  local x = args[1]
-  local y = args[2]
-  local z = args[3]
-  function() Spring.SendLuaRulesMsg("World coordinates: (" .. x .. ", " .. y .. ", " .. z .. ")")end
 end
 
 
