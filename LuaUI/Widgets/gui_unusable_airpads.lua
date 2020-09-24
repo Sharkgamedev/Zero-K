@@ -48,7 +48,6 @@ local cmdEXCLUDEAIRPAD = {
 	action  = 'reclaim',
 	params  = {},
 	texture = 'LuaUI/Images/commands/states/divebomb_shield.png',
-	pos     = {CMD_ONOFF,CMD_REPEAT,CMD_MOVE_STATE,CMD_FIRE_STATE, CMD_RETREAT},
 }
 --function widget:CommandNotify(cmdID, cmdParams, cmdOptions)
 	--if cmdID == CMD_SETAIRPADEXCLUSION then
@@ -57,10 +56,10 @@ local cmdEXCLUDEAIRPAD = {
 --	end
 --end
 
-function widget:CommandsChanged()
-		local customCommands = widgetHandler.customCommands
-		customCommands[#customCommands+1] = cmdEXCLUDEDAIRPAD
-end
+--function widget:CommandsChanged()
+--		local customCommands = widgetHandler.customCommands
+--		customCommands[#customCommands+1] = cmdEXCLUDEDAIRPAD
+--end
 
 local Chili, Screen0
  

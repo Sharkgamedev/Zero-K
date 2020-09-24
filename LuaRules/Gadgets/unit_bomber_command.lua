@@ -148,14 +148,23 @@ local rearmCMD = {
 	hidden	= true,
 }
 
+--local cmdEXCLUDEAIRPAD = {
+--	id      = CMD_EXCLUDEAIRPAD,
+  --	type    = CMDTYPE.ICON_UNIT,
+ -- 	name    = "Exclude",
+--	tooltip = 'Excludes an airpad from the fighter running',
+--	texture = 'LuaUI/Images/commands/states/divebomb_shield.png',
+--	hidden  = false,
+--}
+
 local cmdEXCLUDEAIRPAD = {
-	id      = CMD_EXCLUDEAIRPAD,
-  	type    = CMDTYPE.ICON_UNIT,
-  	name    = "exclude",
-	tooltip = 'Excludes an airpad from the fighter running',
-	action  = 'reclaim',
-	params  = {},
-	texture = 'LuaUI/Images/commands/states/divebomb_shield.png',
+    id      = CMD_EXCLUDEAIRPAD,
+    name    = "ExcludeAirpad",
+    action  = "excludeairpads",
+	cursor  = 'Repair',
+    type    = CMDTYPE.ICON,
+	tooltip = "Excludes an airpad from the running.", --Need to think of a better desc here
+	hidden	= false,
 }
 
 local findPadCMD = {
@@ -515,7 +524,7 @@ local function excludeAirpad (unitID)
  
 	Spring.Echo("Hello")
 --Check if unitID exists in airpad ids list
---Add it to thr exlusion as I have already don ein recvluamsg
+--Add it to the exlusion list like how it's done in recvluarulesmsg
 
 end
 
@@ -751,6 +760,7 @@ function gadget:CommandFallback(unitID, unitDefID, unitTeam, cmdID, cmdParams, c
 	end
 	if cmdID == CMD_EXCLUDEAIRPAD then
 		--excludeAirpad(unitID)
+		Spring.Echo("Hi")
 	end
 	return false -- command not used
 end
