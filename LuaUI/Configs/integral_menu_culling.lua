@@ -17,6 +17,7 @@ local configList = {
 	{cmdID = CMD.RECLAIM               , default = true, name = "Reclaim"},
 	{cmdID = CMD.REPAIR                , default = true, name = "Repair"},
 	{cmdID = CMD_FIND_PAD              , default = true, name = "Resupply"},
+	{cmdId = CMD_EXCLUDEAIRPAD		   , default = true, name = "Exclude Pad"},
 	{cmdID = CMD.RESURRECT             , default = true, name = "Resurrect"},
 	{cmdID = CMD.UNLOAD_UNITS          , default = true, name = "Unload"},
 	
